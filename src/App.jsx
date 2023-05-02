@@ -1,4 +1,6 @@
 import React from "react";
+import {useState} from "react";
+
 //import "./styles.css";
 import {
   Heading,
@@ -24,19 +26,34 @@ import { FaSearch } from "react-icons/fa";
 import NavBar from "./components/header.component";
 import Search from "./components/search.component";
 import Footer from "./components/footer.component";
+import Routes from "./components/routes.component";
+import History from "./components/history.component";
+import User from "./components/user.component";
 
 import "./style.css";
 
 export default function App() {
+ const [bodyComponent, setBodyComponent] = useState("Search");
+
+  function setBody(component) {
+    setBodyComponent(component);
+  }
+
+  function Body(props) {
+    if (bodyComponent === "Search") return <Search />;
+    else if (bodyComponent === "Routes") return <Routes />;
+    else if (bodyComponent === "History") return <History />;
+    else if (bodyComponent === "User") return <User />;
+  }
+
   return (
     <Box className="App" maxHeight="100vh">
-	  <NavBar />
+      <NavBar updateBody={setBody} currentBody={bodyComponent}/>
 
-      	  <Search />
+      <Body component={bodyComponent} />
 
-	  <Footer />
-
-
+      <Footer updateBody={setBody} currentBody={bodyComponent} />
     </Box>
   );
 }
+ 
