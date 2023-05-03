@@ -1,7 +1,7 @@
 import React from "react";
 import {useState} from "react";
 
-//import "./styles.css";
+import "./App.css";
 import {
   Heading,
   Flex,
@@ -47,13 +47,13 @@ export default function App() {
   }
 
   return (
-    <Box className="App" maxHeight="100vh">
+    <VStack className="App" maxHeight="100vh">
       <NavBar updateBody={setBody} currentBody={bodyComponent}/>
 
       <Body component={bodyComponent} />
 
       <Footer updateBody={setBody} currentBody={bodyComponent} />
-    </Box>
+    </VStack>
   );
 }
  
